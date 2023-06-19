@@ -104,6 +104,7 @@ app.get('/v1/tags', (req, res) => {
 })
 
 app.use(express.static('public'))
+app.enable('trust proxy');
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
