@@ -71,11 +71,27 @@ app.get('/v2/gifs/search', (req, res) => {
                     "hd":  `${req.protocol}://${process.env["host"]}` + "/mixkit-young-teacher-teaching-complicated-equations-4623.mp4"
                 }
             }]
-    var filteredGifs = gifs.filter(gif => (req.query == undefined || req.query.search_text == undefined ||  req.query.search_text.length == 0 || gif.tags == req.query.search_text))
+    var filteredGifs = gifs.filter(
+        gif => (req.query == undefined || req.query.search_text == undefined ||  req.query.search_text.length == 0 || gif.tags == req.query.search_text)
+    )
+    
+    var page = 1
+    var total = filteredGifs.length
+    var max_page_length = 3
+    var pages = Math.ceil(total/max_page_length)
+    console.log("total videos", total, "requested page", req.params.page)
+    if (req.query.page != null) {
+        page = parseInt(req.query.page)
+    }
+    const start = (page-1) * max_page_length
+    const end = max_page_length * page
+    console.log("slice", start, end)
+    filteredGifs = filteredGifs.slice(start, end)
+    console.log("page", page, "pages", pages)
     res.json({
-        "page": 1,
-        "pages": 1,
-        "total": filteredGifs.length,
+        "page": page,
+        "pages": pages,
+        "total": total,
         "gifs": filteredGifs
     })
 })
