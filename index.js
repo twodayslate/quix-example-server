@@ -9,6 +9,57 @@ app.get('/v2/auth/temporary', (req, res) => {
   })
 })
 
+app.get('/v2/home/feeds', (req, res) => {
+    console.log("getting home feed")
+    res.json({
+        "horizontalGifs": [],
+        "hotGifs": [
+            {
+                "id": "mixkit-dynamic-animation-of-the-head-of-a-screaming-man-32645",
+                "tags": ["design"],
+                "width": 1080,
+                "height": 1920,
+                "duration": 10.0,
+                "hasAudio": false,
+                "urls": {
+                    "sd": `${req.protocol}://${process.env["host"]}` + "/mixkit-dynamic-animation-of-the-head-of-a-screaming-man-32645-480p.mp4",
+                    "hd":  `${req.protocol}://${process.env["host"]}` + "/mixkit-dynamic-animation-of-the-head-of-a-screaming-man-32645.mp4"
+                }
+            },
+            {
+                "id": "mixkit-siamese-cat-inside-a-hat-4103",
+                "tags": ["cute"],
+                "width": 1920,
+                "height": 1080,
+                "duration": 19.0,
+                "hasAudio": false,
+                "urls": {
+                    "sd": `${req.protocol}://${process.env["host"]}` + "/mixkit-siamese-cat-inside-a-hat-4103-480p.mp4",
+                    "hd":  `${req.protocol}://${process.env["host"]}` + "/mixkit-siamese-cat-inside-a-hat-4103.mp4"
+                }
+            },
+            {
+                "id": "mixkit-typing-on-a-laptop-242",
+                "tags": ["technology"],
+                "width": 1920,
+                "height": 1080,
+                "duration": 9.0,
+                "hasAudio": false,
+                "urls": {
+                    "sd": `${req.protocol}://${process.env["host"]}` + "/mixkit-typing-on-a-laptop-242-480p.mp4",
+                    "hd":  `${req.protocol}://${process.env["host"]}` + "/mixkit-typing-on-a-laptop-242.mp4"
+                }
+            }
+        ],
+        "hotImages": [],
+        "longGifs": [],
+        "soundGifs": [],
+        "verifiedGifs": [],
+        "verifiedImages": [],
+        "verticalGifs": []
+    })
+})
+
 app.get('/v2/gifs/search', (req, res) => {
     console.log(`searching gif ${req.query.search_text}`)
     const gifs = [{
