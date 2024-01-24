@@ -2,6 +2,14 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+app.get('/', (req, res) => {
+    res.json({
+        "server": `${req.protocol}://${req.get('host')}${req.originalUrl}`,
+        "github": "https://github.com/twodayslate/quix-example-server",
+        "message": "Thank you for trying the example server. Please contact support if you need any help!"
+    })
+})
+
 app.get('/v2/auth/temporary', (req, res) => {
     console.log("requesting temporary auth")
   res.json({
