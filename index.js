@@ -68,6 +68,12 @@ app.get('/v2/home/feeds', (req, res) => {
     })
 })
 
+app.get('/watch/:id', (req, res) => {
+    console.log(req.params.id)
+    let id = req.params.id;
+res.send("<h2>Watch</h2><video controls><source src=\"" + `${req.protocol}://${process.env["host"]}/${id}` + ".mp4\" type=\"video/mp4\"></video>")
+});
+
 app.get('/v2/gifs/search', (req, res) => {
     console.log(`searching gif ${req.query.search_text}`)
     const gifs = [{
