@@ -33,6 +33,7 @@ function allGifs(req) {
     {
         "id": "mixkit-siamese-cat-inside-a-hat-4103",
         "tags": ["cute"],
+        "niches": ["animals"],
         "width": 1920,
         "height": 1080,
         "duration": 19.0,
